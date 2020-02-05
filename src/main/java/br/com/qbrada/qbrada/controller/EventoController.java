@@ -1,21 +1,25 @@
 package br.com.qbrada.qbrada.controller;
 
-import br.com.qbrada.qbrada.model.Qbrada;
-import br.com.qbrada.qbrada.service.QbradaService;
+import br.com.qbrada.qbrada.model.Evento;
+import br.com.qbrada.qbrada.repository.EventoRepository;
+import br.com.qbrada.qbrada.service.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import javax.validation.ConstraintViolationException;
+
 import javax.validation.Valid;
 
 @Controller
-public class QbradaController {
+public class EventoController {
 
     @Autowired
-    private QbradaService service;
+    private EventoRepository repository;
+
+    @Autowired
+    private EventoService service;
 
     @GetMapping
     public String index(){
@@ -28,39 +32,36 @@ public class QbradaController {
     }
 
     @PostMapping("/cadastrar")
-    public String cadastrarEvento(@Valid Qbrada qbrada) {
-        service.cadastrarEvento(qbrada);
+    public String cadastrarEvento(@Valid Evento evento) {
+        service.cadastrarEvento(evento);
         return "cadastro";
     }
 
     @ExceptionHandler({BindException.class})
-    public String tratarErrosValidacao(BindException exception, Model model){
-        try {
-            model.addAttribute("erros", exception.getFieldErrors());
-            return "cadastro";
-        }
-        catch(Exception e){
-            System.out.println(e);
-            return null;
-        }
+    public String tratarErrosValidacao(BindException exception, Model model) {
+        model.addAttribute("erros", exception.getFieldErrors());
+        return "cadastro";
     }
 
     @GetMapping("/eventos")
     public ModelAndView listarEventos() {
         ModelAndView pagina = new ModelAndView("listarEventos");
-        Iterable<Qbrada> eventos = service.listarEventos();
+        Iterable<Evento> eventos = service.listarEventos();
         pagina.addObject("eventos", eventos);
         return pagina;
     }
 
-    @GetMapping("/buscar")
-    public String buscaNome(){
-        return "buscaNome";
+    @PostMapping("**/evento")
+    public ModelAndView pesquisa(@RequestParam ("nomepesquisa") String nomepesquisa ) {
+        ModelAndView mdv = new ModelAndView("listarPorNome");
+        mdv.addObject("eventos", repository.findEventoByNome(nomepesquisa));
+        return mdv;
+
     }
 
     @GetMapping("evento")
     public String buscarNome(@RequestParam("nome") String nome, Model model) {
-        Qbrada evento = service.buscarNome(nome);
+        Evento evento = service.buscarNome(nome);
         if(evento != null){
             model.addAttribute("evento", evento);
             return "listarEvento";
@@ -73,7 +74,7 @@ public class QbradaController {
 
     @GetMapping("evento/{nome}")
     public String buscarNomePagina(@PathVariable("nome") String nome, Model model) {
-        Qbrada evento = service.buscarNome(nome);
+        Evento evento = service.buscarNome(nome);
         if(evento != null){
             model.addAttribute("evento", evento);
             return "listarEvento";
@@ -97,4 +98,5 @@ public class QbradaController {
         model.addAttribute("desativar", "Um item foi desativado");
         return "redirect:/eventos";
     }
+
 }

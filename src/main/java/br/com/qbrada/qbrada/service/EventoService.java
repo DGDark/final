@@ -1,7 +1,7 @@
 package br.com.qbrada.qbrada.service;
 
-import br.com.qbrada.qbrada.model.Qbrada;
-import br.com.qbrada.qbrada.repository.QbradaRepository;
+import br.com.qbrada.qbrada.model.Evento;
+import br.com.qbrada.qbrada.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,24 +9,24 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
-public class QbradaService {
+public class EventoService {
 
     @Autowired
-    private QbradaRepository repository;
+    private EventoRepository repository;
 
-    public Qbrada cadastrarEvento(Qbrada evento) {
+    public Evento cadastrarEvento(Evento evento) {
             evento.setAtivo(Boolean.TRUE);
             evento.setDataCriacao(LocalDate.now());
             return repository.save(evento);
     }
 
-    public Iterable<Qbrada> listarEventos() {
-        Iterable<Qbrada> eventos = repository.findAll();
+    public Iterable<Evento> listarEventos() {
+        Iterable<Evento> eventos = repository.findAll();
         return eventos;
     }
 
-    public Qbrada buscarNome(String nome) {
-        Optional<Qbrada> eventos = repository.findByNome(nome);
+    public Evento buscarNome(String nome) {
+        Optional<Evento> eventos = repository.findByNome(nome);
         if (eventos.isPresent()) {
             return eventos.get();
         }
@@ -38,11 +38,14 @@ public class QbradaService {
     }
 
     public void desativar(long id) {
-        Optional<Qbrada> eventos = repository.findById(id);
+        Optional<Evento> eventos = repository.findById(id);
         if(eventos.get() != null){
             eventos.get().setAtivo(false);
             repository.save(eventos.get());
         }
+    }
 
+    public Iterable<Evento> buscarNome(Evento evento) {
+        return repository.findEventoByNome(evento.getNome());
     }
 }

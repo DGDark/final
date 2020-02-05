@@ -9,7 +9,8 @@
     <title>Qbrada</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="Main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Martel+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -21,23 +22,53 @@
             <a href="/">Home</a>
             <a href="/cadastro">cadastro</a>
             <a href="/eventos">Eventos</a>
-            <a href="/buscar">Buscar</a>
+            <a href="/empresas">Empresas parceiras</a>
+
+
+
         </nav>
+
     </div>
 </header>
+
+
+
 <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
 <!-- Banner -->
 <section id="banner">
+    <div class="buscar">
+        <form action="/evento " method="get">
+            <input type="search" id="busca" name="nome" placeholder="Pesquisar evento">
+            <button type="submit">Pesquisar</button>
+        </form>
+        <p th:text="${msg}"></p>
+    </div>
     <div class="inner">
-        <h1>Qbrada: <span>Eventos proximos<br />
-					</span></h1>
+        <img src="images/index.jpeg"/>
         <ul class="actions">
+            <hr>
+
+            <h1>Eventos ativos</h1>
             <li><a href="/eventos" class="button alt">Eventos</a></li>
         </ul>
 
     </div>
 </section>
+<aside class="Sobre">
+    <div class="tituloSobre">
+        <p>Sobre nos </p>
+    </div>
+
+    <div class="DescricaoSobre">
+        <p>
+            Nos somos colaboradores de projetos sociais que tem ideia de ajudar as comunidades a ter acesso a exposição à cultura.
+            O site quebrada tem como o objetivo visar pela cultura no bairro através de entretenimento
+        </p>
+    </div>
+</aside>
+
+
 
 </body>
 </html>
