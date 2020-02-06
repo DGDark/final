@@ -4,6 +4,7 @@
 /* ================================================================================================================ */
 
 .Sobre{
+    flex-direction: column
     width: 100%;
     height: 267px;
     display: flex;
@@ -13,12 +14,17 @@
     flex-direction: column;
     font-family: 'Martel Sans', sans-serif;
     margin: 30px;
+    color:white;
 }
 .tituloSobre{
     font-size: 20pt;
 }
-.descricaoSobre{
-
+descricaoSobre{
+    width: -20px;
+    right: 30px;
+    background-color: black;
+    text-align: center;
+    letter-spacing: 1px;
 }
 
 .buscar{
@@ -54,11 +60,13 @@ font-family: "Lato", sans-serif;
      color: white;
      align-items: center;
      padding: 0 10px;
+     <img src="logo_omni.jpg" alt="some text" width=60 height=40>
  }
 
  .rodape{
      font-size: 10px;
      text-align: center;
+     background-color: white;
  }
 
  .rodape rodape2 {
@@ -66,6 +74,7 @@ font-family: "Lato", sans-serif;
  }
 
  .rodape img{
+    margin: 4px;
      width: 30px;
      padding-left: 0px;
      padding-right: 100px;
@@ -1649,7 +1658,8 @@ transition: none !important;
 /* Type */
 
 body {
-background-color: #fff;
+background-color: #1a1818;;
+
 color: #111111;
 }
 
