@@ -1,3 +1,4 @@
+
 package br.com.qbrada.qbrada.controller;
 
 import br.com.qbrada.qbrada.model.Evento;
@@ -51,12 +52,11 @@ public class EventoController {
         return pagina;
     }
 
-    @PostMapping("**/evento")
-    public ModelAndView pesquisa(@RequestParam ("nomepesquisa") String nomepesquisa ) {
-        ModelAndView mdv = new ModelAndView("listarPorNome");
-        mdv.addObject("eventos", repository.findEventoByNome(nomepesquisa));
+    @PostMapping("/buscar")
+    public ModelAndView pesquisa(@RequestParam ("nome") String nome) {
+        ModelAndView mdv = new ModelAndView("listarEventos");
+        mdv.addObject("eventos", service.listarNome(nome));
         return mdv;
-
     }
 
     @GetMapping("evento")
@@ -68,20 +68,20 @@ public class EventoController {
         }
         else{
             model.addAttribute("msg", "O evento " + nome + " não foi encontrado!! procure novamente");
-            return "buscaNome";
+            return "index";
         }
     }
 
-    @GetMapping("evento/{nome}")
-    public String buscarNomePagina(@PathVariable("nome") String nome, Model model) {
-        Evento evento = service.buscarNome(nome);
+    @GetMapping("evento/{id}")
+    public String buscarNomePagina(@PathVariable("id") long id, Model model) {
+        Evento evento = service.buscarId(id);
         if(evento != null){
             model.addAttribute("evento", evento);
             return "listarEvento";
         }
         else{
-            model.addAttribute("msg", "O evento " + nome + " não foi encontrado!! procure novamente");
-            return "buscaNome";
+            model.addAttribute("msg", "O evento não foi encontrado!! procure novamente");
+            return "index";
         }
     }
 
@@ -99,8 +99,9 @@ public class EventoController {
         return "redirect:/eventos";
     }
 
-    @GetMapping("/empresa")
+    @GetMapping("/empresas")
     public String empresas(){
-        return "empresa";
+        return "empresas";
     }
+
 }

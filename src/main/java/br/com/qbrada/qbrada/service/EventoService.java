@@ -15,9 +15,9 @@ public class EventoService {
     private EventoRepository repository;
 
     public Evento cadastrarEvento(Evento evento) {
-            evento.setAtivo(Boolean.TRUE);
-            evento.setDataCriacao(LocalDate.now());
-            return repository.save(evento);
+        evento.setAtivo(Boolean.TRUE);
+        evento.setDataCriacao(LocalDate.now());
+        return repository.save(evento);
     }
 
     public Iterable<Evento> listarEventos() {
@@ -25,7 +25,7 @@ public class EventoService {
         return eventos;
     }
 
-    public Evento buscarNome(String nome) {
+    public Evento buscarNome(String nome){
         Optional<Evento> eventos = repository.findByNome(nome);
         if (eventos.isPresent()) {
             return eventos.get();
@@ -45,7 +45,15 @@ public class EventoService {
         }
     }
 
-    public Iterable<Evento> buscarNome(Evento evento) {
-        return repository.findEventoByNome(evento.getNome());
+    public Iterable<Evento> listarNome(String nome) {
+        return repository.findEventoByNome(nome);
+    }
+
+    public Evento buscarId(long id) {
+        Optional<Evento> eventos = repository.findById(id);
+        if (eventos.isPresent()) {
+            return eventos.get();
+        }
+        return null;
     }
 }

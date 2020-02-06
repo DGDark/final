@@ -16,6 +16,7 @@ h2{
     color:
     white;
 }
+
 .descicao{
 background-color: *Cor de Escolha*
 Margin: 15px;
@@ -75,5 +76,6 @@ footer {
         color: white;
 }
 
-
-==========================================================================================================
+body{
+    background: black;
+}

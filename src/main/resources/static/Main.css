@@ -43,21 +43,33 @@ font-size: 3em;
 font-family: "Lato", sans-serif;
 }
 
+ .footer {
+     font-size: 20px;
+     display: flex;
+     justify-content: space-around;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     background-color: white;
+     color: white;
+     align-items: center;
+     padding: 0 10px;
+ }
 
+ .rodape{
+     font-size: 10px;
+     text-align: center;
+ }
 
+ .rodape rodape2 {
+     font-size: 10px;
+ }
 
-
-
-
-
-
-
-
-
-
-
-
-
+ .rodape img{
+     width: 30px;
+     padding-left: 0px;
+     padding-right: 100px;
+ }
 
 
 

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="nav.css" />
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans&display=swap" rel="stylesheet">
 
-</head>
+</head>3
 <body>
 <div th:replace="header :: header"> </div>
 
@@ -23,7 +23,11 @@
             </footer>
 
             <div className="buttons">
-                <button type="button">Informações</button>
+                <button  type="button">
+                    <a th:href="@{'/evento/' + ${evento.id}}">
+                        <span th:text="${evento.nome}"></span>
+                    </a>
+                </button>
             </div>
         </li>
     </ul>
