@@ -99,4 +99,8 @@ public class EventoController {
         return "redirect:/eventos";
     }
 
+    @GetMapping("/empresa")
+    public String empresas(){
+        return "empresa";
+    }
 }
