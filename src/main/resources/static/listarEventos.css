@@ -2,9 +2,8 @@ body{
     background-color: black;
     margin: 0;
 }
-h1{
-    color: white;
-}
+
+
 
 aside {
   max-width: 980px;
@@ -19,6 +18,7 @@ aside ul {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px;
   margin-top: 50px;
+
 }
 
 aside ul li {
@@ -38,7 +38,8 @@ aside ul li footer {
   border: 1px solid var(--border);
   padding: 15px 20px;
   text-align: left;
-  border-radius: 0 0 5px 5px;
+  background-color: #391111;
+  color: white;
 }
 
 aside ul li footer strong {
@@ -57,6 +58,7 @@ aside ul li footer p {
   line-height: 20px;
   color: var(--secondary-color);
   margin-top: 5px;
+  color: white;
 }
 
 aside ul li .buttons {
@@ -65,6 +67,17 @@ aside ul li .buttons {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   width: 20px;
+
+}
+
+#teste{
+    background: #391111;
+}
+.botoes a{
+    text-decoration: none;
+}
+#botao{
+    background-color: #e5474ba3;;
 }
 
 aside ul li .buttons button {
@@ -74,11 +87,13 @@ aside ul li .buttons button {
   border-radius: 4px;
   background: var(--card-color);
   cursor: pointer;
+
 }
 
 aside ul li .buttons button:hover img {
   transform: translateY(-5px);
   transition: all 0.2s;
+  background-color: red ;
 }
 
 aside .empty {
@@ -130,4 +145,5 @@ aside .empty {
   font-size: 18px;
   margin-top: 30px;
   cursor: pointer;
-}
+  background-color: red;
+  }
